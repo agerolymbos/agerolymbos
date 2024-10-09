@@ -119,7 +119,7 @@ form input[type="submit"]:hover {
 
 footer {
     background-color: var(--header-bg);
-    color: var(--black);
+    color: #CCFF00;
     text-align: left;
     padding: 1rem;
     border-top: 1px solid var(--medium-blue);
