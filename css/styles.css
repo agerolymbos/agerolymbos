@@ -64,23 +64,16 @@ nav {
 }
 
 nav a {
-    color: var(--black);
+    color: #CCFF00; /* Default color for unhovered links */
     text-decoration: none;
     padding: 0.5rem 1rem;
     display: inline-block;
 }
 
 nav a:hover {
-    background-color: #CCFF00;
+    background-color: #CCFF00; /* Background color on hover */
+    color: #222222; /* Text color on hover */
 }
-
-nav a:hover {
-    background-color: #CCFF00;
-}
-
-  nav a:hover {
-            color: #222222;
-        }
 
 .container {
     width: 80%;
