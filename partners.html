@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="el">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>HeroCard.gr - Συνεργαζόμενες Επιχειρήσεις</title>
+      <link rel="stylesheet" href="css/styles.css">
+      <script src="js/auth.js" defer></script>
+      <script src="https://unpkg.com/leaflet/dist/leaflet.js" defer></script>
+      <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+      <script>
+         document.addEventListener('DOMContentLoaded', function() {
+             if (localStorage.getItem('loggedIn') !== 'true') {
+                 window.location.href = 'login.html'; // Redirect to login page if not logged in
+             }
+         });
+      </script>
+      <script src="js/map.js" defer></script>
+      <style>
+         /* Style the map container to be square */
+         #map {
+         width: 100%;
+         height: 1000px; /* Fixed height */
+         max-width: 1000px; /* Optional: limit maximum width */
+         margin: 0 auto; /* Center the map container horizontally */
+         border: 1px solid #0073e6; /* Optional: border color */
+         }
+      </style>
+   </head>
+   <body>
+      <header>
+         <div class="header-content">
+            <a href="index.html">
+            <img src="images/logo.png" alt="HeroCard Logo" class="logo">
+            </a>
+         </div>
+      </header>
+      <nav>
+         <a href="index.html">Αρχική</a>
+         <a href="join.html">Εγγραφή</a>
+         <a href="partners.html">Χάρτης</a>
+         <a href="benefits.html">Προνόμια</a>
+         <a href="faq.html">Συχνές Ερωτήσεις</a>
+         <a href="contact.html">Επικοινωνία</a>
+         <a href="profile.html">Προφίλ</a>
+	 <a href="portal.html">Εταιρίες</a>
+         <a href="#" id="logout">Αποσύνδεση</a>
+      </nav>
+
+
+
+
+
+ <div class="container">
+<h2>Αναζητήστε την Έκπτωση που Ψάχνετε!</h2>
+        <section class="filters">
+            
+            <div class="filter-container">
+                <select class="category-dropdown">
+                    <option>All Categories</option>
+                    <optgroup label="Εστίαση & Διασκέδαση">
+                        <option>Εστιατόρια</option>
+                        <option>Καφετέριες</option>
+                        <option>Μπαρ</option>
+                        <option>Ζαχαροπλαστεία</option>
+                    </optgroup>
+                    <optgroup label="Λιανικό Εμπόριο">
+                        <option>Ρούχα & Υποδήματα</option>
+                        <option>Ηλεκτρονικά Είδη</option>
+                        <option>Καταστήματα Καλλυντικών</option>
+                        <option>Σούπερ Μάρκετ</option>
+                    </optgroup>
+                    <optgroup label="Υγεία & Ευεξία">
+                        <option>Ιατρεία & Κλινικές</option>
+                        <option>Φαρμακεία</option>
+                        <option>Γυμναστήρια</option>
+                        <option>Σπα & Κέντρα Ευεξίας</option>
+                    </optgroup>
+                    <optgroup label="Υπηρεσίες">
+                        <option>Λογιστικά Γραφεία</option>
+                        <option>Νομικές Υπηρεσίες</option>
+                        <option>Υπηρεσίες Καθαρισμού</option>
+                        <option>Μεταφορές & Μετακομίσεις</option>
+                    </optgroup>
+                    <optgroup label="Εκπαίδευση & Κατάρτιση">
+                        <option>Φροντιστήρια</option>
+                        <option>Κέντρα Ξένων Γλωσσών</option>
+                        <option>ΙΕΚ & Κολλέγια</option>
+                        <option>Κέντρα Δια Βίου Μάθησης</option>
+                    </optgroup>
+                    <optgroup label="Τεχνολογία & Πληροφορική">
+                        <option>Επισκευές Υπολογιστών & Κινητών</option>
+                        <option>Ανάπτυξη Λογισμικού</option>
+                        <option>Υπηρεσίες Διαδικτύου</option>
+                        <option>Ηλεκτρονικό Εμπόριο</option>
+                    </optgroup>
+                    <optgroup label="Μεταφορές & Αυτοκίνηση">
+                        <option>Συνεργεία Αυτοκινήτων</option>
+                        <option>Πρατήρια Καυσίμων</option>
+                        <option>Ενοικιάσεις Αυτοκινήτων</option>
+                        <option>Ασφαλιστικές Υπηρεσίες Αυτοκινήτων</option>
+                    </optgroup>
+                    <optgroup label="Τουρισμός & Ταξίδια">
+                        <option>Ξενοδοχεία</option>
+                        <option>Ταξιδιωτικά Γραφεία</option>
+                        <option>Ενοικιαζόμενα Δωμάτια</option>
+                        <option>Κρουαζιέρες</option>
+                    </optgroup>
+                    <optgroup label="Κατασκευές & Ανακαινίσεις">
+                        <option>Τεχνικές Εταιρείες</option>
+                        <option>Υδραυλικοί & Ηλεκτρολόγοι</option>
+                        <option>Καταστήματα Δομικών Υλικών</option>
+                        <option>Επιπλώσεις & Διακοσμήσεις</option>
+                    </optgroup>
+                    <optgroup label="Ομορφιά & Μόδα">
+                        <option>Κομμωτήρια</option>
+                        <option>Κέντρα Αισθητικής</option>
+                        <option>Καταστήματα Καλλυντικών</option>
+                        <option>Μπουτίκ Ρούχων</option>
+                    </optgroup>
+                </select>
+                <input type="text" placeholder="Search for businesses..." class="search-box">
+            </div>
+        </section>
+        <section class="card">
+            <h2>Συνεργαζόμενες Επιχειρήσεις</h2>
+            <p>Η HeroCard.gr συνεργάζεται με πολλές επιχειρήσεις σε όλη την Ελλάδα για να προσφέρει τα καλύτερα προνόμια στα μέλη μας. </br>Μερικές από τις συνεργαζόμενες επιχειρήσεις περιλαμβάνουν:</p>
+            <div class="business-grid">
+                <!-- Example Business Items -->
+                <div class="business-item">
+                    <img src="images/logos/1.png" alt="Business A">
+                    <h3><a href="https://www.example.com/epixeirisi-a" target="_blank" rel="noopener noreferrer">Επιχείρηση Α</a></h3>
+                </div>
+                <div class="business-item">
+                    <img src="images/logos/2.jpg" alt="Business B">
+                    <h3><a href="https://www.example.com/epixeirisi-b" target="_blank" rel="noopener noreferrer">Επιχείρηση Β</a></h3>
+                </div>
+                <div class="business-item">
+                    <img src="images/logos/3.jpg" alt="Business C">
+                    <h3><a href="https://www.example.com/epixeirisi-c" target="_blank" rel="noopener noreferrer">Επιχείρηση Γ</a></h3>
+                </div>
+                <div class="business-item">
+                    <img src="images/logos/4.jpg" alt="Business D">
+                    <h3><a href="https://www.example.com/epixeirisi-d" target="_blank" rel="noopener noreferrer">Επιχείρηση Δ</a></h3>
+                </div>
+                <!-- Add more business items as needed -->
+            </div>
+            <div class="pagination">
+                <a href="#">&laquo; Προηγούμενη</a>
+                <a href="#" class="active">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">Επόμενη &raquo;</a>
+            </div>
+        </section>
+    </div>
+
+
+
+
+
+      <div class="container">
+         <section class="carousel">
+            <h2>Συνεργαζόμενες Επιχειρήσεις</h2>
+            <div class="carousel-container">
+               <div class="carousel-items">
+                  <div class="carousel-item"><img src="images/logos/1.png" alt="Επιχείρηση Α"></div>
+                  <div class="carousel-item"><img src="images/logos/2.jpg" alt="Επιχείρηση Β"></div>
+                  <div class="carousel-item"><img src="images/logos/3.jpg" alt="Επιχείρηση Γ"></div>
+                  <div class="carousel-item"><img src="images/logos/4.jpg" alt="Επιχείρηση Δ"></div>
+                  <div class="carousel-item"><img src="images/logos/5.avif" alt="Επιχείρηση Δ"></div>
+                  <div class="carousel-item"><img src="images/logos/6.avif" alt="Επιχείρηση Δ"></div>
+                  <div class="carousel-item"><img src="images/logos/7.png" alt="Επιχείρηση Α"></div>
+                  <div class="carousel-item"><img src="images/logos/8.jpg" alt="Επιχείρηση Β"></div>
+                  <div class="carousel-item"><img src="images/logos/9.jpg" alt="Επιχείρηση Γ"></div>
+                  <div class="carousel-item"><img src="images/logos/10.jpg" alt="Επιχείρηση Δ"></div>
+                  <div class="carousel-item"><img src="images/logos/11.avif" alt="Επιχείρηση Δ"></div>
+                  <div class="carousel-item"><img src="images/logos/12.avif" alt="Επιχείρηση Δ"></div>
+                  <!-- Add more logos as needed -->
+               </div>
+            </div>
+         </section>
+      </div>
+      <div class="container">
+         <section class="card">
+            <h2>Χάρτης Επιχειρήσεων</h2>
+            <div id="map"></div>
+         </section>
+      </div>
+
+      <footer>
+         <div class="footer-content">
+            <div class="footer-left">
+               <p>&copy; 2024 HeroCard.gr. Όλα τα δικαιώματα κατοχυρωμένα.</p>
+            </div>
+            <div class="footer-center">
+             <ul class="social-media">
+                  <li><a href="https://www.facebook.com/herocard.gr/" target="_blank" aria-label="Facebook"><img src="images/facebook-icon.png" alt="Facebook"></a></li>
+                  <li><a href="https://www.instagram.com/herocard.gr" target="_blank" aria-label="Instagram"><img src="images/instagram-icon.png" alt="Instagram"></a></li>
+<li><a href="https://invite.viber.com/?g2=AQAw9l4wwL7Nx1NVvgVF9a%2FgRTND%2BWUBEtspqWrsgtGo5Obn8E2%2F87bSvcEt5mvw" target="_blank" aria-label="Viber"><img src="images/viber-icon.png" alt="TikTok"></a></li>
+                  
+<li><a href="https://www.tiktok.com" target="_blank" aria-label="TikTok"><img src="images/tiktok-icon.png" alt="TikTok"></a></li>
+                  <li><a href="https://www.twitter.com" target="_blank" aria-label="x"><img src="images/x-icon.png" alt="X"></a></li>
+                  <li><a href="https://www.linkedin.com/company/herocardgr/" target="_blank" aria-label="LinkedIn"><img src="images/linkedin-icon.png" alt="LinkedIn"></a></li>
+               </ul>
+
+            </div>
+            <div class="app-icons">
+               <a href="https://apps.apple.com/app/id1551353775">
+               <img 
+                  class="apple"
+                  src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1276560000&h=7e7b68fad19738b5649a1bfb78ff46e9" 
+                  alt="Download on the App Store">
+               </a>
+               <a href='https://play.google.com/store/apps/details?id=com.stagescycling.stages'>
+               <img 
+                  class="android" 
+                  alt='Get it on Google Play' 
+                  src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' />
+               </a>
+            </div>
+            <div class="footer-right">
+               <ul class="footer-links">
+                  <li><a href="privacy-policy.html">Πολιτική Απορρήτου</a></li>
+                  <li><a href="contact.html">Επικοινωνία</a></li>
+               </ul>
+               <div class="contact-info">
+                  <p>Τηλέφωνο: <a href="tel:+302123456789">+30 21 234 56789</a></p>
+                  <p>Διεύθυνση: <a href="https://www.google.com/maps">Οδός Παράδειγμα 123, Αθήνα, 12345</a></p>
+                  <p>Αρ. ΓΕΜΗ: <a href="https://www.google.com/maps">827364827364287</a></p>
+               </div>
+            </div>
+         </div>
+      </footer>
+      <script src="js/carousel.js" defer></script>
+   </body>
+</html>

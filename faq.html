@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="el">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>HeroCard.gr - Συχνές Ερωτήσεις</title>
+      <link rel="stylesheet" href="css/styles.css">
+      <script src="js/auth.js" defer></script>
+      <script src="js/faq.js" defer></script>
+      <script>
+         document.addEventListener('DOMContentLoaded', function() {
+             if (localStorage.getItem('loggedIn') !== 'true') {
+                 window.location.href = 'login.html'; // Redirect to login page if not logged in
+             }
+         });
+      </script>
+      <style>
+         .faq-section {
+         margin-bottom: 1rem;
+         }
+         .faq-question {
+         background-color: #004080; /* Medium blue */
+         color: #ffffff; /* White text */
+         padding: 1rem;
+         cursor: pointer;
+         border-radius: 5px;
+         font-weight: bold;
+         }
+         .faq-answer {
+         display: none;
+         padding: 1rem;
+         border: 1px solid #004080; /* Medium blue border */
+         border-radius: 5px;
+         background-color: #e6f2ff; /* Light blue background */
+         }
+         .faq-answer.show {
+         display: block;
+         }
+      </style>
+   </head>
+   <body>
+      <header>
+         <div class="header-content">
+            <a href="index.html">
+            <img src="images/logo.png" alt="HeroCard Logo" class="logo">
+            </a>
+         </div>
+      </header>
+      <nav>
+         <a href="index.html">Αρχική</a>
+         <a href="join.html">Εγγραφή</a>
+         <a href="partners.html">Χάρτης</a>
+         <a href="benefits.html">Προνόμια</a>
+         <a href="faq.html">Συχνές Ερωτήσεις</a>
+         <a href="contact.html">Επικοινωνία</a>
+         <a href="profile.html">Προφίλ</a>
+	 <a href="portal.html">Εταιρίες</a>
+         <a href="#" id="logout">Αποσύνδεση</a>
+      </nav>
+      <div class="container">
+         <section class="card">
+            <h2>Συχνές Ερωτήσεις</h2>
+            <div class="faq-section">
+               <div class="faq-question">Πώς μπορώ να εγγραφώ στην HeroCard.gr;</div>
+               <div class="faq-answer">Για να εγγραφείτε στην HeroCard.gr, πρέπει να συμπληρώσετε τη φόρμα εγγραφής στη σελίδα εγγραφής και να ακολουθήσετε τα βήματα που περιγράφονται εκεί.</div>
+            </div>
+            <div class="faq-section">
+               <div class="faq-question">Ποιες είναι οι απαιτήσεις για να γίνω μέλος;</div>
+               <div class="faq-answer">Για να γίνετε μέλος της HeroCard.gr, πρέπει να είστε ηλικίας 18 ετών και άνω και να διαθέτετε μόνιμη διεύθυνση στην Ελλάδα.</div>
+            </div>
+            <div class="faq-section">
+               <div class="faq-question">Πώς μπορώ να επικοινωνήσω με την υποστήριξη;</div>
+               <div class="faq-answer">Μπορείτε να επικοινωνήσετε με την υποστήριξη μέσω της φόρμας επικοινωνίας στην σελίδα Επικοινωνία ή μέσω email στο support@herocard.gr.</div>
+            </div>
+      </div>
+      </section>
+      </div>
+      <div class="container">
+         <section class="card">
+            <h2>Συχνές Ερωτήσεις</h2>
+            <div class="faq-section">
+               <div class="faq-question">Πώς μπορώ να ακυρώσω την εγγραφή μου;</div>
+               <div class="faq-answer">Για να ακυρώσετε την εγγραφή σας, παρακαλώ επικοινωνήστε με την υποστήριξη μέσω της φόρμας επικοινωνίας ή μέσω email και θα επεξεργαστούμε το αίτημά σας.</div>
+            </div>
+            <div class="faq-section">
+               <div class="faq-question">Ποιες είναι οι διαθέσιμες προσφορές;</div>
+               <div class="faq-answer">Οι διαθέσιμες προσφορές ποικίλλουν και περιλαμβάνουν εκπτώσεις σε καταστήματα, εστιατόρια, και υπηρεσίες. Επισκεφτείτε την ενότητα Προνόμια για να δείτε τις τρέχουσες προσφορές.</div>
+            </div>
+            <div class="faq-section">
+               <div class="faq-question">Μπορώ να χρησιμοποιήσω την κάρτα σε όλη την Ελλάδα;</div>
+               <div class="faq-answer">Ναι, η HeroCard.gr μπορεί να χρησιμοποιηθεί σε επιχειρήσεις που συμμετέχουν στο πρόγραμμα σε όλη την Ελλάδα. Για να δείτε τις επιχειρήσεις που συμμετέχουν, επισκεφτείτε την ενότητα Συνεργαζόμενες Επιχειρήσεις.</div>
+            </div>
+            <div class="faq-section">
+               <div class="faq-question">Πώς μπορώ να προσθέσω μια επιχείρηση στην πλατφόρμα;</div>
+               <div class="faq-answer">Για να προσθέσετε την επιχείρησή σας στην πλατφόρμα, επικοινωνήστε μαζί μας μέσω της φόρμας επικοινωνίας και δώστε μας τις απαραίτητες πληροφορίες για την επιχείρησή σας.</div>
+            </div>
+         </section>
+      </div>
+      <div class="container">
+         <section class="card">
+            <h2>Συχνές Ερωτήσεις</h2>
+            <div class="faq-section">
+               <div class="faq-question">Υπάρχει περιορισμός στον αριθμό των προσφορών που μπορώ να χρησιμοποιήσω;</div>
+               <div class="faq-answer">Δεν υπάρχει περιορισμός στον αριθμό των προσφορών που μπορείτε να χρησιμοποιήσετε, αλλά ενδέχεται να ισχύουν όροι και προϋποθέσεις για κάθε προσφορά.</div>
+            </div>
+            <div class="faq-section">
+               <div class="faq-question">Πώς μπορώ να ενημερώσω τα προσωπικά μου στοιχεία;</div>
+               <div class="faq-answer">Για να ενημερώσετε τα προσωπικά σας στοιχεία, συνδεθείτε στον λογαριασμό σας και επισκεφτείτε την ενότητα Ρυθμίσεις Λογαριασμού.</div>
+            </div>
+            <div class="faq-section">
+               <div class="faq-question">Πώς μπορώ να επαναφέρω τον κωδικό πρόσβασής μου;</div>
+               <div class="faq-answer">Για να επαναφέρετε τον κωδικό πρόσβασής σας, κάντε κλικ στη σύνδεση "Ξεχάσατε τον κωδικό σας;" στη σελίδα σύνδεσης και ακολουθήστε τις οδηγίες.</div>
+            </div>
+            <div class="faq-section">
+               <div class="faq-question">Είναι ασφαλή τα προσωπικά μου δεδομένα;</div>
+               <div class="faq-answer">Ναι, η HeroCard.gr δεσμεύεται για την προστασία των προσωπικών σας δεδομένων και τηρεί όλα τα απαραίτητα μέτρα ασφαλείας για την προστασία τους σύμφωνα με τη νομοθεσία περί προστασίας προσωπικών δεδομένων.</div>
+            </div>
+         </section>
+      </div>
+      <footer>
+         <div class="footer-content">
+            <div class="footer-left">
+               <p>&copy; 2024 HeroCard.gr. Όλα τα δικαιώματα κατοχυρωμένα.</p>
+            </div>
+            <div class="footer-center">
+              <ul class="social-media">
+                  <li><a href="https://www.facebook.com/herocard.gr/" target="_blank" aria-label="Facebook"><img src="images/facebook-icon.png" alt="Facebook"></a></li>
+                  <li><a href="https://www.instagram.com/herocard.gr" target="_blank" aria-label="Instagram"><img src="images/instagram-icon.png" alt="Instagram"></a></li>
+<li><a href="https://invite.viber.com/?g2=AQAw9l4wwL7Nx1NVvgVF9a%2FgRTND%2BWUBEtspqWrsgtGo5Obn8E2%2F87bSvcEt5mvw" target="_blank" aria-label="Viber"><img src="images/viber-icon.png" alt="TikTok"></a></li>
+                  
+<li><a href="https://www.tiktok.com" target="_blank" aria-label="TikTok"><img src="images/tiktok-icon.png" alt="TikTok"></a></li>
+                  <li><a href="https://www.twitter.com" target="_blank" aria-label="x"><img src="images/x-icon.png" alt="X"></a></li>
+                  <li><a href="https://www.linkedin.com/company/herocardgr/" target="_blank" aria-label="LinkedIn"><img src="images/linkedin-icon.png" alt="LinkedIn"></a></li>
+               </ul>
+
+            </div>
+            <div class="app-icons">
+               <a href="https://apps.apple.com/app/id1551353775">
+               <img 
+                  class="apple"
+                  src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1276560000&h=7e7b68fad19738b5649a1bfb78ff46e9" 
+                  alt="Download on the App Store">
+               </a>
+               <a href='https://play.google.com/store/apps/details?id=com.stagescycling.stages'>
+               <img 
+                  class="android" 
+                  alt='Get it on Google Play' 
+                  src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' />
+               </a>
+            </div>
+            <div class="footer-right">
+               <ul class="footer-links">
+                  <li><a href="privacy-policy.html">Πολιτική Απορρήτου</a></li>
+                  <li><a href="contact.html">Επικοινωνία</a></li>
+               </ul>
+               <div class="contact-info">
+                  <p>Τηλέφωνο: <a href="tel:+302123456789">+30 21 234 56789</a></p>
+                  <p>Διεύθυνση: <a href="https://www.google.com/maps">Οδός Παράδειγμα 123, Αθήνα, 12345</a></p>
+                  <p>Αρ. ΓΕΜΗ: <a href="https://www.google.com/maps">827364827364287</a></p>
+               </div>
+            </div>
+         </div>
+      </footer>
+   </body>
+</html>

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="el">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>HeroCard.gr - Επικοινωνία</title>
+      <link rel="stylesheet" href="css/styles.css">
+      <script>
+         document.addEventListener('DOMContentLoaded', function() {
+             if (localStorage.getItem('loggedIn') !== 'true') {
+                 window.location.href = 'login.html'; // Redirect to login page if not logged in
+             }
+
+             // Form content data
+             const formContent = {
+                 activediscounts: {
+                     title: 'Active Discounts',
+                     fields: `
+                         <div class="form-group">
+                             <label for="select-discount">Select Discount</label>
+                             <select id="select-discount" name="select-discount" required>
+                                 <option value="discount1">Discount 1</option>
+                                 <option value="discount2">Discount 2</option>
+                                 <option value="discount3">Discount 3</option>
+                             </select>
+                         </div>
+                         <div class="form-group">
+                             <label for="discount-details">Discount Details</label>
+                             <textarea id="discount-details" name="discount-details" rows="5" readonly>Details about the selected discount will appear here.</textarea>
+                         </div>
+                     `,
+                     action: '/manage_active_discounts'
+                 },
+                 discounts: {
+                     title: 'Create a New Discount',
+                     fields: `
+                         <div class="form-group">
+                             <label for="discount-name">Discount Name</label>
+                             <input type="text" id="discount-name" name="discount-name" required>
+                         </div>
+                         <div class="form-group">
+                             <label for="discount-type">Discount Type</label>
+                             <select id="discount-type" name="discount-type" required>
+                                 <option value="percentage">Percentage Discount</option>
+                                 <option value="fixed-amount">Fixed Amount Discount</option>
+                                 <option value="one-time-code">One-Time Code</option>
+                             </select>
+                         </div>
+                         <div class="form-group">
+                             <label for="discount-value">Discount Value</label>
+                             <input type="text" id="discount-value" name="discount-value" required>
+                         </div>
+                         <div class="form-group">
+                             <label for="expiry-date">Expiry Date</label>
+                             <input type="date" id="expiry-date" name="expiry-date" required>
+                         </div>
+                         <div class="form-group">
+                             <label for="description">Description</label>
+                             <textarea id="description" name="description" rows="5" required></textarea>
+                         </div>
+                     `,
+                     action: '/submit_discount'
+                 },
+                 reports: {
+                     title: 'View Reports',
+                     fields: `
+                         <div class="form-group">
+                             <label for="report-type">Report Type</label>
+                             <select id="report-type" name="report-type" required>
+                                 <option value="monthly">Monthly Report</option>
+                                 <option value="quarterly">Quarterly Report</option>
+                                 <option value="yearly">Yearly Report</option>
+                             </select>
+                         </div>
+                         <div class="form-group">
+                             <label for="date-range">Date Range</label>
+                             <input type="date" id="start-date" name="start-date" required> to
+                             <input type="date" id="end-date" name="end-date" required>
+                         </div>
+                     `,
+                     action: '/view_reports'
+                 },
+                 profile: {
+                     title: 'Edit Profile Settings',
+                     fields: `
+                         <div class="form-group">
+                             <label for="company-name">Company Name</label>
+                             <input type="text" id="company-name" name="company-name" required>
+                         </div>
+                         <div class="form-group">
+                             <label for="contact-email">Contact Email</label>
+                             <input type="email" id="contact-email" name="contact-email" required>
+                         </div>
+                         <div class="form-group">
+                             <label for="contact-phone">Contact Phone</label>
+                             <input type="tel" id="contact-phone" name="contact-phone" required>
+                         </div>
+                         <div class="form-group">
+                             <label for="address">Company Address</label>
+                             <textarea id="address" name="address" rows="3" required></textarea>
+                         </div>
+                     `,
+                     action: '/edit_profile'
+                 }
+             };
+
+             // Function to update form
+             function updateForm(contentKey) {
+                 const formContainer = document.querySelector('.form-container');
+                 formContainer.querySelector('h2').textContent = formContent[contentKey].title;
+                 formContainer.querySelector('form').action = formContent[contentKey].action;
+                 formContainer.querySelector('.form-fields').innerHTML = formContent[contentKey].fields;
+             }
+
+             // Add event listeners to cards
+             document.querySelector('.card.activediscounts').addEventListener('click', function() {
+                 updateForm('activediscounts');
+             });
+             document.querySelector('.card.discounts').addEventListener('click', function() {
+                 updateForm('discounts');
+             });
+             document.querySelector('.card.reports').addEventListener('click', function() {
+                 updateForm('reports');
+             });
+             document.querySelector('.card.profile').addEventListener('click', function() {
+                 updateForm('profile');
+             });
+
+         });
+      </script>
+      <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Header Styles */
+               .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+      
+       
+      nav a:hover {
+    background-color: #000000;
+}
+
+  nav a:hover {
+            color: #CCFF00;
+        }
+
+        /* Container Styles */
+        .container {
+            width: 80%;
+            margin: 30px auto;
+            max-width: 1200px;
+        }
+
+        /* Dashboard Styles */
+        .dashboard {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            width: 48%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            cursor: pointer;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card h3 {
+            margin-bottom: 15px;
+            color: #5754F5;
+        }
+        .card p {
+            margin-bottom: 10px;
+            color: #666;
+        }
+        .card a {
+            color: #5754F5;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        /* Form Styles */
+        .form-container {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .form-group button {
+            background-color: #5754F5;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .form-group button:hover {
+            background-color: #4443d4;
+        }
+    </style>
+   </head>
+   <body>
+        <header>
+         <div class="header-content">
+            <a href="index.html">
+            <img src="images/logo.png" alt="HeroCard Logo" class="logo">
+            </a>
+         </div>
+      </header>
+      <nav>
+         <a href="index.html">Αρχική</a>
+         <a href="join.html">Εγγραφή</a>
+         <a href="partners.html">Χάρτης</a>
+         <a href="benefits.html">Προνόμια</a>
+         <a href="faq.html">Συχνές Ερωτήσεις</a>
+         <a href="contact.html">Επικοινωνία</a>
+         <a href="profile.html">Προφίλ</a>
+	 <a href="portal.html">Εταιρίες</a>
+         <a href="#" id="logout">Αποσύνδεση</a>
+      </nav>
+      <div class="container">
+        <!-- Dashboard Cards -->
+        <div class="dashboard">
+            <div class="card activediscounts">
+                <h3>Active Discounts</h3>
+                <p>Manage your currently active discounts.</p>
+                <a href="#">Manage Active Discounts &rarr;</a>
+            </div>
+            <div class="card discounts">
+                <h3>New Discount</h3>
+                <p>Create a new discount for your customers.</p>
+                <a href="#">Create Discount &rarr;</a>
+            </div>
+            <div class="card reports">
+                <h3>Reports</h3>
+                <p>View reports on the performance of your discounts.</p>
+                <a href="#">View Reports &rarr;</a>
+            </div>
+            <div class="card profile">
+                <h3>Profile Settings</h3>
+                <p>Update your company information and settings.</p>
+                <a href="#">Edit Profile &rarr;</a>
+            </div>
+        </div>
+        </br>
+        <!-- Form Container -->
+        <section class="form-container">
+            <h2>Create a New Discount</h2>
+            <form action="/submit_discount" method="post">
+                <div class="form-fields">
+                    <!-- Default form fields here -->
+                    <div class="form-group">
+                        <label for="discount-name">Discount Name</label>
+                        <input type="text" id="discount-name" name="discount-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="discount-type">Discount Type</label>
+                        <select id="discount-type" name="discount-type" required>
+                            <option value="percentage">Percentage Discount</option>
+                            <option value="fixed-amount">Fixed Amount Discount</option>
+                            <option value="one-time-code">One-Time Code</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="discount-value">Discount Value</label>
+                        <input type="text" id="discount-value" name="discount-value" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="expiry-date">Expiry Date</label>
+                        <input type="date" id="expiry-date" name="expiry-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea id="description" name="description" rows="5" required></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Create Discount</button>
+                </div>
+            </form>
+        </section>
+    </div>
+      <footer>
+         <div class="footer-content">
+            <div class="footer-left">
+               <p>&copy; 2024 HeroCard.gr. Όλα τα δικαιώματα κατοχυρωμένα.</p>
+            </div>
+            <div class="footer-center">
+            <ul class="social-media">
+                  <li><a href="https://www.facebook.com/herocard.gr/" target="_blank" aria-label="Facebook"><img src="images/facebook-icon.png" alt="Facebook"></a></li>
+                  <li><a href="https://www.instagram.com/herocard.gr" target="_blank" aria-label="Instagram"><img src="images/instagram-icon.png" alt="Instagram"></a></li>
+<li><a href="https://invite.viber.com/?g2=AQAw9l4wwL7Nx1NVvgVF9a%2FgRTND%2BWUBEtspqWrsgtGo5Obn8E2%2F87bSvcEt5mvw" target="_blank" aria-label="Viber"><img src="images/viber-icon.png" alt="TikTok"></a></li>
+                  
+<li><a href="https://www.tiktok.com" target="_blank" aria-label="TikTok"><img src="images/tiktok-icon.png" alt="TikTok"></a></li>
+                  <li><a href="https://www.twitter.com" target="_blank" aria-label="x"><img src="images/x-icon.png" alt="X"></a></li>
+                  <li><a href="https://www.linkedin.com/company/herocardgr/" target="_blank" aria-label="LinkedIn"><img src="images/linkedin-icon.png" alt="LinkedIn"></a></li>
+               </ul>
+
+            </div>
+            <div class="app-icons">
+               <a href="https://apps.apple.com/app/id1551353775">
+               <img 
+                  class="apple"
+                  src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1276560000&h=7e7b68fad19738b5649a1bfb78ff46e9" 
+                  alt="Download on the App Store">
+               </a>
+               <a href='https://play.google.com/store/apps/details?id=com.stagescycling.stages'>
+               <img 
+                  class="android" 
+                  alt='Get it on Google Play' 
+                  src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' />
+               </a>
+            </div>
+            <div class="footer-right">
+               <ul class="footer-links">
+                  <li><a href="privacy-policy.html">Πολιτική Απορρήτου</a></li>
+                  <li><a href="contact.html">Επικοινωνία</a></li>
+               </ul>
+               <div class="contact-info">
+                  <p>Τηλέφωνο: <a href="tel:+302123456789">+30 21 234 56789</a></p>
+                  <p>Διεύθυνση: <a href="https://www.google.com/maps">Οδός Παράδειγμα 123, Αθήνα, 12345</a></p>
+                  <p>Αρ. ΓΕΜΗ: <a href="https://www.google.com/maps">827364827364287</a></p>
+               </div>
+            </div>
+         </div>
+      </footer>
+   </body>
+</html>

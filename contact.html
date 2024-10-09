@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeroCard.gr - Επικοινωνία</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Container Styles */
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Card Section Styles */
+        .card {
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Form Styles */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            color: #333;
+            background-color: #fff;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            border-color: #0073e6;
+            outline: none;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        input[type="submit"] {
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #0073e6;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #005bb5;
+        }
+
+        h2 {
+            color: #0073e6;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html">
+                <img src="images/logo.png" alt="HeroCard Logo" class="logo">
+            </a>
+        </div>
+    </header>
+    <nav>
+        <a href="index.html">Αρχική</a>
+        <a href="join.html">Εγγραφή</a>
+        <a href="partners.html">Χάρτης</a>
+        <a href="benefits.html">Προνόμια</a>
+        <a href="faq.html">Συχνές Ερωτήσεις</a>
+        <a href="contact.html">Επικοινωνία</a>
+        <a href="profile.html">Προφίλ</a>
+        <a href="portal.html">Εταιρίες</a>
+        <a href="#" id="logout">Αποσύνδεση</a>
+    </nav>
+
+    <div class="container">
+        <section class="card">
+            <h2>Επικοινωνήστε μαζί μας</h2>
+            <p>Συμπληρώστε τη φόρμα επικοινωνίας για να επικοινωνήσετε μαζί μας.</p>
+            <form action="/contact" method="post">
+                <div class="form-group">
+                    <label for="name">Ονοματεπώνυμο:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="am">ΑΜ:</label>
+                    <input type="text" id="am" name="am" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Μήνυμα:</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Αποστολή">
+                </div>
+            </form>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-left">
+                <p>&copy; 2024 HeroCard.gr. Όλα τα δικαιώματα κατοχυρωμένα.</p>
+            </div>
+            <div class="footer-center">
+            <ul class="social-media">
+                  <li><a href="https://www.facebook.com/herocard.gr/" target="_blank" aria-label="Facebook"><img src="images/facebook-icon.png" alt="Facebook"></a></li>
+                  <li><a href="https://www.instagram.com/herocard.gr" target="_blank" aria-label="Instagram"><img src="images/instagram-icon.png" alt="Instagram"></a></li>
+<li><a href="https://invite.viber.com/?g2=AQAw9l4wwL7Nx1NVvgVF9a%2FgRTND%2BWUBEtspqWrsgtGo5Obn8E2%2F87bSvcEt5mvw" target="_blank" aria-label="Viber"><img src="images/viber-icon.png" alt="TikTok"></a></li>
+                  
+<li><a href="https://www.tiktok.com" target="_blank" aria-label="TikTok"><img src="images/tiktok-icon.png" alt="TikTok"></a></li>
+                  <li><a href="https://www.twitter.com" target="_blank" aria-label="x"><img src="images/x-icon.png" alt="X"></a></li>
+                  <li><a href="https://www.linkedin.com/company/herocardgr/" target="_blank" aria-label="LinkedIn"><img src="images/linkedin-icon.png" alt="LinkedIn"></a></li>
+               </ul>
+
+            </div>
+            <div class="app-icons">
+                <a href="https://apps.apple.com/app/id1551353775">
+                    <img class="apple" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&releaseDate=1276560000&h=7e7b68fad19738b5649a1bfb78ff46e9" alt="Download on the App Store">
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.stagescycling.stages">
+                    <img class="android" alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png">
+                </a>
+            </div>
+            <div class="footer-right">
+                <ul class="footer-links">
+                    <li><a href="privacy-policy.html">Πολιτική Απορρήτου</a></li>
+                    <li><a href="contact.html">Επικοινωνία</a></li>
+                </ul>
+                <div class="contact-info">
+                    <p>Τηλέφωνο: <a href="tel:+302123456789">+30 21 234 56789</a></p>
+                    <p>Διεύθυνση: <a href="https://www.google.com/maps">Οδός Παράδειγμα 123, Αθήνα, 12345</a></p>
+                    <p>Αρ. ΓΕΜΗ: <a href="https://www.google.com/maps">827364827364287</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
