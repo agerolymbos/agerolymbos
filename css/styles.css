@@ -353,7 +353,7 @@ canvas {
 
 .footer-links a {
     text-decoration: none;
-    color: var(--black);
+    color: #CCFF00;
 }
 
 .footer-links a:hover {
